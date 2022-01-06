@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Fourth Lecture</title>
+    <style>
+        #messageDiv{
+            background-color:aqua;
+            height:auto;
+        }
+    </style>
+    <script>
+     
+    </script>
+</head>
+<body>
+    <h2>Fruit Example</h2>
+    <input type="text" placeholder="Enter a fruit name" id="txtFruit"/>
+    <input type="button" value="Ekle" onclick="addFruit(document.getElementById('txtFruit').value)" />
+    <div id="messageDiv"></div>
+    <script>
+
+        var fruitBasket = [];
+
+        function addFruit(fruitName) {
+            var newFruit = {
+                name: fruitName
+            };
+            if (fruitBasket.length == 0) {
+                newFruit.quantity = 1;
+                newFruit.id = 1;
+                fruitBasket.push(newFruit);
+            }
+            else {
+                var isFruitInBasket = false;
+
+                for (var i = 0; i < fruitBasket.length; i++) {
+                    if (fruitBasket[i].name == fruitName) {
+                        isFruitInBasket = true;
+                        fruitBasket[i].quantity++;
+                        break;
+                    }
+                }
+
+                if (!isFruitInBasket) {
+                    newFruit.id = fruitBasket.length + 1;
+                    newFruit.quantity = 1;
+                    fruitBasket.push(newFruit);
+                }
+            }
+            FillFruit();
+        }
+
+        function FillFruit() {
+            //editing messageDiv related html
+            //Clearing messagediv's innerHTML
+            document.getElementById("messageDiv").innerHTML = "";
+            var ul = document.createElement("ul");
+            var total = 0;
+            for (var i = 0; i < fruitBasket.length; i++) {
+                var li = document.createElement("li");
+                var btn = document.createElement("input");
+                btn.setAttribute("type", "button");
+                btn.setAttribute("value", "INCREMENT");
+                btn.setAttribute("id", fruitBasket[i].id);
+                btn.addEventListener("click", IncrementProduct);
+                li.innerHTML = "<span>" + fruitBasket[i].name + " - " + fruitBasket[i].quantity + " piece </span>";
+                li.appendChild(btn);
+                ul.appendChild(li);
+                total += fruitBasket[i].quantity;
+            }
+            var secondLi = document.createElement("li");
+            secondLi.innerHTML = "<span>There are " + total + " products in total at your basket</span>";
+            ul.appendChild(secondLi);
+            document.getElementById("messageDiv").appendChild(ul);
+        }
+
+        function IncrementProduct() {
+            for (var i = 0; i < fruitBasket.length; i++) {
+                if (fruitBasket[i].id == this.id) {
+                    fruitBasket[i].quantity++;
+                    break;
+                }
+            }
+            FillFruit();
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ThirdLectureTwoButtonsExample</title>
+    <style>
+        .firstButton{
+            background-color:lightgray;
+            color:black;
+        }
+
+        .secondButton{
+            background-color:lightgray;
+            color:black;
+        }
+    </style>
+
+    <script>
+        function firstButtonClicked(btn) {
+            // secondButton will be changed.
+            document.getElementById("btn2").style = "color:red";
+            document.getElementById("btn1").style = "color:black";  //can be done without btn argument
+        }
+        function secondButtonClicked(btn) {
+            document.getElementById("btn1").style = "color:blue";
+            //document.getElementById("btn2").style = "color:black";
+            //Also can be done with btn argument
+            btn.style = "color:black";
+            //Third approach
+            //btn.style = "class:\"secondButton\"";
+
+
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="myFirstButton" id="btn1" onclick="firstButtonClicked(this)" class="firstButton" />
+    <input type="button" value="mySecondButton" id="btn2" onclick="secondButtonClicked(this)" class="secondButton" />
+</body>
+</html>

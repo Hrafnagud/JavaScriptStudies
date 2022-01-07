@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Seventh Lecture</title>
+    <style>
+        .shape{
+            margin:5px;
+            float:left;
+            height:200px;
+            width:200px;
+            transition: all 1.4s ease;
+            border-radius: 100px;
+        }
+
+        .shape:hover{
+            transform: scale(1.04) rotate(1800deg) translate(10px);
+
+        }
+    </style>
+</head>
+<body>
+    <h2>You can click to "ADD" button if you want to add a new circle</h2><br />
+    
+    <input type="button" value="ADD" onclick="Add()" /><br /><br />
+    
+    <div id="divPanel"></div>
+
+    <script>
+        var divPanel = document.getElementById("divPanel");
+
+        function Add() {
+            var newDiv = document.createElement("div");
+            newDiv.setAttribute("class", "shape");
+            newDiv.style.backgroundColor = generateRandomColors();
+            newDiv.setAttribute("onclick", "addDivInsideDiv(this)");
+            divPanel.appendChild(newDiv);
+        }
+
+        function addDivInsideDiv() {
+            var width = item.offsetWidth;
+            var height = item.offsetHeight;
+            
+            newDiv.setAttribute("style", "margin:5px; float:left; height:" + (Number(height)- 10) + "px; width:" + (Number(width)- 10) + "px; border-radius:" + (Number(height) / 2) + "px;");
+            newDiv.setAttribute("onclick", "addDivInsideDiv(this)");
+            newDiv.style.backgroundColor = generateRandomColors();
+            item.setAttribute("onclick", null);
+            item.appendChild(newDiv);
+        }
+
+        function generateRandomColors() {
+            var letters = "0123456789ABCDEF";
+            var color = "#";
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            console.log(color);
+            return color;
+        }
+
+    </script>
+</body>
+</html>

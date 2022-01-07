@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>JQuery</title>
+    <style>
+        #colorPanel {
+            text-align: center;
+            vertical-align: middle;
+            line-height: 150px;
+            margin: 0 auto;
+        }
+    </style>
+    <script src="Scripts/jquery-3.6.0.min.js"></script> <!--Drag, jquery-3.6.0.min.js, after installing jQuery, from Scripts folder.-->
+</head>
+<body>
+    <h2>RGB Example With JQuery</h2><br />
+    <input type="range" class="color" id="r" max="255" min="0"/><br />
+    <input type="range" class="color" id="g" max="255" min="0"/><br />
+    <input type="range" class="color" id="b" max="255" min="0"/><br />
+
+    <div id="colorPanel"></div>
+
+    <script>
+        $(document).ready(function () {
+            $(".color").change(function () {
+                var r = 0, g = 0, b = 0;
+                r = $("#r").val();
+                g = $("#g").val();
+                b = $("#b").val();
+
+                var rgb = "rgb(" + r + "," + g + "," + b + ")";
+                var opposite = "rgb(" + (255-r) + "," + (255-g) + "," + (255-b) + ")";
+                
+                $("#colorPanel").css("background-color", rgb);
+                $("#colorPanel").css("color", opposite);
+                $("#colorPanel").css("height", 150);
+                $("#colorPanel").css("width", 200);
+                $("#colorPanel").html("<b>" + rgb + "</b>");
+
+            });
+        });
+    </script>
+</body>
+</html>

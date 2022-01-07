@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>RGB Example</title>
+    <style>
+        #colorPalette{
+            height: 150px;
+            width: 650px;
+            text-align: center;
+            font-size: 30px;
+            border: 5px solid black;
+            border-radius: 20px;
+            padding-top:150px;
+            padding-left:500px;
+            padding-right:500px;
+            padding-bottom:60px; 
+        }
+    </style>
+</head>
+<body>
+    <h2>RGB JS Example</h2>
+
+    R <input type="range" id="rangeRed" min="0" max="255" value="0" onchange="alter()" />
+    <label id="labelRed"> 0 </label> <br />
+
+    G <input type="range" id="rangeGreen" min="0" max="255" value="0" onchange="alter()" />
+    <label id="labelGreen"> 0 </label> <br />
+
+    B <input type="range" id="rangeBlue" min="0" max="255" value="0" onchange="alter()" />
+    <label id="labelBlue"> 0 </label> <br /><br />
+
+    <div id="colorPalette"></div>
+
+    <script>
+        function alter() {
+            //var r = 0, g = 0, b = 0;
+            var r = g = b = 0;
+            r = document.getElementById("rangeRed").value;
+            g = document.getElementById("rangeGreen").value;
+            b = document.getElementById("rangeBlue").value;
+
+            document.getElementById("labelRed").innerText = r;
+            document.getElementById("labelGreen").innerText = g;
+            document.getElementById("labelBlue").innerText = b;
+
+            var color = "rgb(" + r + "," + g + "," + b + ")";   //rgb(100,100,100)
+            var oppositeColor = "rgb(" + (255 - r) + "," + (255 - g) + "," + (255 - b) + ")";
+
+            var hex = "#" + toHex(r) + toHex(g) + toHex(b);
+
+            document.getElementById("colorPalette").style.backgroundColor = color;
+            document.getElementById("colorPalette").style.color = oppositeColor;
+            document.getElementById("colorPalette").innerText = color + " | " + hex;
+            document.getElementById("colorPalette").style.borderColor = oppositeColor;
+            //calculate hex
+        }
+
+        function toHex(number) {
+            var hex = parseInt(number).toString(16);
+            if (hex.length <2) {
+                hex = "0" + hex;
+            }
+            return hex;
+        }
+    </script>
+</body>
+</html>

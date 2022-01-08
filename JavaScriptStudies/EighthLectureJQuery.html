@@ -10,6 +10,10 @@
             line-height: 150px;
             margin: 0 auto;
         }
+
+        body{
+            background-color: powderblue;
+        }
     </style>
     <script src="Scripts/jquery-3.6.0.min.js"></script> <!--Drag, jquery-3.6.0.min.js, after installing jQuery, from Scripts folder.-->
 </head>
@@ -24,14 +28,13 @@
     <script>
         $(document).ready(function () {
             $(".color").change(function () {
-                var r = 0, g = 0, b = 0;
+                var r = g = b = 0;
                 r = $("#r").val();
                 g = $("#g").val();
                 b = $("#b").val();
 
                 var rgb = "rgb(" + r + "," + g + "," + b + ")";
                 var opposite = "rgb(" + (255-r) + "," + (255-g) + "," + (255-b) + ")";
-                
                 $("#colorPanel").css("background-color", rgb);
                 $("#colorPanel").css("color", opposite);
                 $("#colorPanel").css("height", 150);

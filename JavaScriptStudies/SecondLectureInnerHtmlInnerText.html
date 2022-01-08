@@ -15,7 +15,7 @@
         }
         function Print(txt) {
             document.getElementById("lblMessage").style = "color:blue; background-color:red";
-            documment.getElementById("lblMessage").innerHTML= "<i>"+txt.value+"<i>";
+            document.getElementById("lblMessage").innerHTML = "<i>"+txt.value+"<i>";
         }
     </script>
 </head>
@@ -29,6 +29,6 @@
     <input type="text" id="printedTxtMessage" onkeyup="Print(this)" />
     <br /><br />
     Result:
-    <label id="lblMessage"></label>
+    <div id="lblMessage"></div>
 </body>
 </html>
